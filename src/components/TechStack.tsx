@@ -169,7 +169,7 @@ const TechStack = () => {
 
   return (
     <div className="techstack" ref={containerRef} id="techstack">
-      <h2> My Techstack</h2>
+      <h2> My Tech Stack</h2>
 
       <Canvas
         shadows
