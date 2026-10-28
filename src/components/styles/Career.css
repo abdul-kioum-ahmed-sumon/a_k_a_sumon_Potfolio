@@ -55,23 +55,35 @@
   margin: 0px auto;
 }
 
-/* Timeline Center Spine */
-.career-timeline {
+/* Timeline Background Track */
+.career-timeline-track {
   position: absolute;
-  top: 0;
+  top: 18px;
   left: 50%;
   transform: translateX(-50%);
   width: 2px;
-  height: 100%;
-  background-image: linear-gradient(
+  background: rgba(194, 164, 255, 0.15);
+  z-index: 1;
+}
+
+/* Timeline Active Progress Spine */
+.career-timeline {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 0px;
+  background: linear-gradient(
     to bottom,
-    transparent,
-    #9d5cff 15%,
-    var(--accentColor) 85%,
-    transparent 100%
+    rgba(157, 92, 255, 0.5) 0%,
+    #9d5cff 50%,
+    #c2a4ff 85%,
+    #ffffff 100%
   );
-  box-shadow: 0 0 10px rgba(194, 164, 255, 0.4);
-  max-height: 0%;
+  box-shadow: 0 0 12px rgba(194, 164, 255, 0.7);
+  z-index: 2;
+  overflow: visible;
 }
 
 .career-dot {
@@ -79,11 +91,14 @@
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 50%);
-  background-color: #c2a4ff;
-  width: 12px;
-  height: 12px;
+  background-color: #ffffff;
+  border: 2px solid #c2a4ff;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  box-shadow: 0 0 15px 4px #c2a4ff, 0 0 30px 8px #9d5cff;
+  box-shadow: 0 0 16px 4px #c2a4ff, 0 0 32px 8px #9d5cff;
+  z-index: 3;
+  pointer-events: none;
 }
 
 /* Milestone Row */
@@ -266,10 +281,8 @@
 }
 
 @media only screen and (max-width: 900px) {
+  .career-timeline-track,
   .career-timeline {
-    left: 20px;
-  }
-  .career-dot {
     left: 20px;
   }
   .career-node {
@@ -318,6 +331,7 @@
     padding-left: 34px;
     margin-bottom: 32px;
   }
+  .career-timeline-track,
   .career-timeline {
     left: 10px;
   }
@@ -326,9 +340,6 @@
     top: 18px;
     width: 18px;
     height: 18px;
-  }
-  .career-dot {
-    left: 10px;
   }
   .career-info-in {
     flex-direction: column;

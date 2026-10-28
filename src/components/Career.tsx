@@ -1,4 +1,10 @@
+import { useRef } from "react";
 import "./styles/Career.css";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 interface Milestone {
   role: string;
@@ -38,8 +44,67 @@ const milestones: Milestone[] = [
 ];
 
 const Career = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const infoEl = document.querySelector(".career-info") as HTMLElement;
+      const trackEl = document.querySelector(".career-timeline-track") as HTMLElement;
+      const timelineEl = document.querySelector(".career-timeline") as HTMLElement;
+      const nodes = document.querySelectorAll(".career-node");
+
+      if (!infoEl || !timelineEl || nodes.length < 2) return;
+
+      const updateDimensions = () => {
+        const infoRect = infoEl.getBoundingClientRect();
+        const firstNodeRect = nodes[0].getBoundingClientRect();
+        const lastNodeRect = nodes[nodes.length - 1].getBoundingClientRect();
+
+        const startY =
+          firstNodeRect.top + firstNodeRect.height / 2 - infoRect.top;
+        const endY =
+          lastNodeRect.top + lastNodeRect.height / 2 - infoRect.top;
+        const totalHeight = Math.max(endY - startY, 40);
+
+        if (trackEl) {
+          trackEl.style.top = `${startY}px`;
+          trackEl.style.height = `${totalHeight}px`;
+        }
+        timelineEl.style.top = `${startY}px`;
+
+        return totalHeight;
+      };
+
+      let totalHeight = updateDimensions();
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".career-info",
+          start: "top 65%",
+          end: "bottom 65%",
+          scrub: 0.4,
+          invalidateOnRefresh: true,
+          onRefresh: () => {
+            totalHeight = updateDimensions();
+          },
+        },
+      });
+
+      tl.fromTo(
+        timelineEl,
+        { height: 0 },
+        {
+          height: () => totalHeight,
+          ease: "none",
+          duration: 1,
+        }
+      );
+    },
+    { scope: containerRef }
+  );
+
   return (
-    <div className="career-section section-container" id="career">
+    <div className="career-section section-container" id="career" ref={containerRef}>
       <div className="career-container">
         <div className="career-header">
           <span className="career-kicker">Career &amp; Academics</span>
@@ -47,7 +112,10 @@ const Career = () => {
         </div>
 
         <div className="career-info">
-          {/* Animated GSAP Center Spine */}
+          {/* Static Background Spine Track */}
+          <div className="career-timeline-track"></div>
+
+          {/* Animated GSAP Progress Spine */}
           <div className="career-timeline">
             <div className="career-dot"></div>
           </div>
