@@ -159,6 +159,10 @@ const Scene = () => {
       if (!isMounted) return;
       animFrameId = requestAnimationFrame(animate);
       if (!isVisible) return;
+      const delta = clock.getDelta();
+      if (mixer) {
+        mixer.update(delta);
+      }
       if (headBone) {
         handleHeadRotation(
           headBone,
@@ -169,10 +173,6 @@ const Scene = () => {
           THREE.MathUtils.lerp
         );
         light.setPointLight(screenLight);
-      }
-      const delta = clock.getDelta();
-      if (mixer) {
-        mixer.update(delta);
       }
       renderer.render(scene, camera);
     };

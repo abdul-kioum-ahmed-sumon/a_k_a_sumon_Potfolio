@@ -13,7 +13,7 @@ const milestones: Milestone[] = [
   {
     role: "B.Sc. in Computer Science & Engineering",
     org: "BAUST",
-    period: "2024",
+    period: "2022-26",
     description:
       "Graduated with a B.Sc. in Computer Science and Engineering from Bangladesh Army University of Science and Technology (BAUST). Completed coursework in Data Structures, Algorithms, Software Engineering, Database Systems, AI, and Mobile App Development.",
     highlights: ["Algorithms", "Data Structures", "Software Engineering", "AI", "Mobile Apps"],
