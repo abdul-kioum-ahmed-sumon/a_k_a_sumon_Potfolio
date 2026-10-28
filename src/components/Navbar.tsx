@@ -122,22 +122,22 @@ const Navbar = () => {
           {/* Clean Navigation Links with live rolling hover animation */}
           <ul className="navbar-links">
             <li>
-              <a data-href="#about" href="#about">
+              <a data-href="#about" href="#about" data-cursor="disable">
                 <HoverLinks text="ABOUT" />
               </a>
             </li>
             <li>
-              <a data-href="#career" href="#career">
+              <a data-href="#career" href="#career" data-cursor="disable">
                 <HoverLinks text="EXPERIENCE" />
               </a>
             </li>
             <li>
-              <a data-href="#work" href="#work">
+              <a data-href="#work" href="#work" data-cursor="disable">
                 <HoverLinks text="WORK" />
               </a>
             </li>
             <li>
-              <a data-href="#contact" href="#contact">
+              <a data-href="#contact" href="#contact" data-cursor="disable">
                 <HoverLinks text="CONTACT" />
               </a>
             </li>

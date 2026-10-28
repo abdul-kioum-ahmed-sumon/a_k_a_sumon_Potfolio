@@ -38,24 +38,29 @@
 }
 
 .header-wrapper.scrolled .header {
-  padding: 11px 28px;
-  background: rgba(11, 8, 14, 0.72);
+  padding: 8px 24px;
+  background: rgba(14, 12, 22, 0.75);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), 0 0 25px rgba(194, 164, 255, 0.05);
+  border: 1px solid rgba(194, 164, 255, 0.22);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.55), 0 0 25px rgba(157, 92, 255, 0.15);
+  border-radius: 100px;
 }
 
 /* Brand Identity with Live Hover Animation */
 .navbar-brand {
   display: inline-flex;
   align-items: center;
+  padding: 8px 18px;
+  border-radius: 100px;
   text-decoration: none;
   font-weight: 700;
-  font-size: 15.5px;
+  font-size: 15px;
   letter-spacing: 2.2px;
   color: #ffffff;
-  transition: all 0.25s ease;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .navbar-brand .hover-link {
@@ -63,36 +68,59 @@
   letter-spacing: 2.2px;
 }
 
+.navbar-brand:hover {
+  background: rgba(194, 164, 255, 0.16);
+  border-color: rgba(194, 164, 255, 0.45);
+  box-shadow: 0 0 16px rgba(194, 164, 255, 0.4), 0 0 30px rgba(157, 92, 255, 0.2);
+  transform: translateY(-2px) scale(1.03);
+}
+
 .navbar-brand:hover .hover-in {
-  color: var(--accentColor);
-  text-shadow: 0 0 14px rgba(194, 164, 255, 0.45);
+  color: #ffffff;
+  text-shadow: 0 0 14px rgba(194, 164, 255, 0.7);
 }
 
 /* Clean Navigation Links with Live Hover Animation */
 .navbar-links {
   display: flex;
   align-items: center;
-  column-gap: 36px;
+  column-gap: 8px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .navbar-links li {
-  font-size: 13.5px;
+  font-size: 13px;
   letter-spacing: 1px;
   font-weight: 600;
   cursor: pointer;
 }
 
 .navbar-links li a {
-  color: #eae6f2;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 100px;
+  color: rgba(255, 255, 255, 0.82);
   text-decoration: none;
-  transition: color 0.2s;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
 }
 
 .navbar-links li a:hover {
-  color: var(--accentColor);
+  color: #ffffff !important;
+  background: rgba(194, 164, 255, 0.18);
+  border-color: rgba(194, 164, 255, 0.5);
+  box-shadow: 0 0 18px rgba(194, 164, 255, 0.45), 0 0 32px rgba(157, 92, 255, 0.22);
+  transform: translateY(-2px) scale(1.06);
+}
+
+.navbar-links li a:hover .hover-in {
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(194, 164, 255, 0.7);
 }
 
 /* Responsive queries */
