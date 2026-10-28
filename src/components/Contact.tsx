@@ -9,7 +9,7 @@ import {
   MdPlace,
   MdSchool,
 } from "react-icons/md";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
+import { FaGithub, FaLinkedinIn, FaWhatsapp, FaFacebookF } from "react-icons/fa6";
 import { SiCodeforces } from "react-icons/si";
 import { TbNotes } from "react-icons/tb";
 import { smoother } from "./Navbar";
@@ -49,6 +49,20 @@ const Contact = () => {
       badge: "Professional Network",
       url: "https://linkedin.com/in/abdul-kioum-ahmed-sumon",
       icon: <FaLinkedinIn />,
+    },
+    {
+      name: "WhatsApp",
+      handle: "akasumon",
+      badge: "Direct Message",
+      url: "https://wa.me/akasumon",
+      icon: <FaWhatsapp />,
+    },
+    {
+      name: "Facebook",
+      handle: "akasumon",
+      badge: "Social Profile",
+      url: "https://facebook.com/akasumon",
+      icon: <FaFacebookF />,
     },
     {
       name: "Codeforces",
@@ -99,6 +113,17 @@ const Contact = () => {
                   data-cursor="disable"
                 >
                   <MdMailOutline /> Send Email <MdArrowOutward />
+                </a>
+
+                <a
+                  href="https://wa.me/akasumon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-action-btn contact-btn-secondary"
+                  data-cursor="disable"
+                  aria-label="Chat on WhatsApp"
+                >
+                  <FaWhatsapp /> WhatsApp <MdArrowOutward />
                 </a>
 
                 <button

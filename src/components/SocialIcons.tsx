@@ -1,8 +1,8 @@
 import {
   FaGithub,
   FaLinkedinIn,
+  FaFacebookF,
 } from "react-icons/fa6";
-import { SiCodeforces } from "react-icons/si";
 import { MdMailOutline } from "react-icons/md";
 import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
@@ -29,10 +29,10 @@ const socialLinks: SocialItem[] = [
     ariaLabel: "Visit LinkedIn profile",
   },
   {
-    name: "Codeforces",
-    url: "https://codeforces.com/profile/abdulkioumahmed",
-    icon: <SiCodeforces />,
-    ariaLabel: "Visit Codeforces profile",
+    name: "Facebook",
+    url: "https://facebook.com/akasumon",
+    icon: <FaFacebookF />,
+    ariaLabel: "Visit Facebook profile",
   },
   {
     name: "Email",
