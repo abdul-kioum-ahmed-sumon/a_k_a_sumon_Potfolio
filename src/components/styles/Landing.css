@@ -278,46 +278,54 @@ h2.landing-info-h2 {
   left: 0;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .landing-intro {
-    top: 75px;
+    top: 88px;
     width: 100%;
     left: 0;
   }
   .landing-intro h2 {
-    font-size: 16px;
+    font-size: 14.5px;
     letter-spacing: 1.5px;
+    margin-bottom: 4px;
   }
   .landing-intro h1 {
-    font-size: clamp(24px, 7vw, 32px);
+    font-size: clamp(24px, 7vw, 30px);
     line-height: 1.15;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    margin: 0;
   }
   .landing-headline {
     font-size: 13px;
     line-height: 18px;
     margin-top: 8px;
-    max-width: 100%;
+    max-width: 90%;
   }
   .landing-info {
-    bottom: 25px;
-    width: calc(100% - 20px);
-    left: 10px;
+    bottom: 24px;
+    width: auto;
+    max-width: calc(100% - 130px);
+    left: 0;
     right: auto;
     transform: none;
     text-align: left;
   }
   .landing-info h3 {
-    font-size: 16px;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    margin: 0 0 2px 0;
+  }
+  /* Remove duplicate overlapping ghost text on mobile for crisp legibility */
+  h2.landing-info-h2 {
+    display: none !important;
   }
   .landing-info h2 {
-    font-size: 28px;
-    line-height: 32px;
-    margin-top: -10px;
+    font-size: clamp(26px, 7.5vw, 34px);
+    line-height: 1.1;
+    margin-top: 0;
     margin-left: 0;
-  }
-  h2.landing-info-h2 {
-    font-size: 30px;
+    color: #ffffff;
+    letter-spacing: 1.5px;
   }
   .landing-bio-short {
     display: none;
@@ -328,51 +336,30 @@ h2.landing-info-h2 {
   }
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 769px) {
   .landing-circle2 {
     display: block;
   }
   .character-model {
     z-index: 0;
-  }
-  .landing-info h3 {
-    font-size: 18px;
-  }
-  .landing-intro h2 {
-    font-size: 18px;
-  }
-  .landing-intro h1 {
-    font-size: 30px;
-    line-height: 30px;
-  }
-  .landing-info h2 {
-    font-size: 35px;
-    line-height: 40px;
-  }
-  h2.landing-info-h2 {
-    font-size: 38px;
-  }
-}
-@media screen and (min-width: 768px) {
-  .character-model {
     height: 80vh;
   }
   .landing-intro h2 {
-    font-size: 25px;
+    font-size: 24px;
   }
   .landing-intro h1 {
-    font-size: 40px;
+    font-size: 38px;
     line-height: 35px;
   }
   .landing-info h3 {
-    font-size: 25px;
+    font-size: 22px;
   }
   .landing-info h2 {
-    font-size: 45px;
+    font-size: 42px;
     line-height: 42px;
   }
   h2.landing-info-h2 {
-    font-size: 55px;
+    font-size: 52px;
   }
 }
 @media screen and (min-width: 1025px) {

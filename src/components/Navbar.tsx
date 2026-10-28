@@ -3,6 +3,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { HiBars3, HiXMark } from "react-icons/hi2";
+import { TbNotes } from "react-icons/tb";
 import "./styles/Navbar.css";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
@@ -10,6 +12,7 @@ export let smoother: ScrollSmoother;
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const isDesktop = typeof window !== "undefined" && window.innerWidth > 1024;
@@ -98,10 +101,24 @@ const Navbar = () => {
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
+    setMobileMenuOpen(false);
     if (smoother && window.innerWidth > 1024) {
       smoother.scrollTo(0, true);
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const handleNavClick = (e: React.MouseEvent, section: string) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    if (smoother && window.innerWidth > 1024) {
+      smoother.scrollTo(section, true, "top 80px");
+    } else {
+      const targetEl = document.querySelector(section);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -119,7 +136,7 @@ const Navbar = () => {
             <HoverLinks text="A.K.A.SUMON" />
           </a>
 
-          {/* Clean Navigation Links with live rolling hover animation */}
+          {/* Clean Navigation Links with live rolling hover animation (Desktop) */}
           <ul className="navbar-links">
             <li>
               <a data-href="#about" href="#about" data-cursor="disable">
@@ -142,7 +159,86 @@ const Navbar = () => {
               </a>
             </li>
           </ul>
+
+          {/* Mobile Menu Toggle Button */}
+          <button
+            type="button"
+            className={`mobile-menu-toggle ${mobileMenuOpen ? "open" : ""}`}
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            aria-label="Toggle navigation menu"
+            data-cursor="disable"
+          >
+            {mobileMenuOpen ? <HiXMark /> : <HiBars3 />}
+          </button>
         </header>
+      </div>
+
+      {/* Mobile Navigation Drawer / Overlay */}
+      <div className={`mobile-nav-menu ${mobileMenuOpen ? "active" : ""}`}>
+        <div
+          className="mobile-nav-backdrop"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+        <div className="mobile-nav-content">
+          <ul className="mobile-nav-links">
+            <li>
+              <a
+                data-href="#about"
+                href="#about"
+                onClick={(e) => handleNavClick(e, "#about")}
+                data-cursor="disable"
+              >
+                <span className="mobile-nav-num">01</span>
+                <span>ABOUT</span>
+              </a>
+            </li>
+            <li>
+              <a
+                data-href="#career"
+                href="#career"
+                onClick={(e) => handleNavClick(e, "#career")}
+                data-cursor="disable"
+              >
+                <span className="mobile-nav-num">02</span>
+                <span>EXPERIENCE</span>
+              </a>
+            </li>
+            <li>
+              <a
+                data-href="#work"
+                href="#work"
+                onClick={(e) => handleNavClick(e, "#work")}
+                data-cursor="disable"
+              >
+                <span className="mobile-nav-num">03</span>
+                <span>WORK</span>
+              </a>
+            </li>
+            <li>
+              <a
+                data-href="#contact"
+                href="#contact"
+                onClick={(e) => handleNavClick(e, "#contact")}
+                data-cursor="disable"
+              >
+                <span className="mobile-nav-num">04</span>
+                <span>CONTACT</span>
+              </a>
+            </li>
+          </ul>
+
+          <div className="mobile-nav-footer">
+            <a
+              href="/a_k_a_sumon_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mobile-nav-cv"
+              data-cursor="disable"
+            >
+              <TbNotes /> View Full Resume
+            </a>
+          </div>
+        </div>
       </div>
 
       <div className="landing-circle1"></div>
