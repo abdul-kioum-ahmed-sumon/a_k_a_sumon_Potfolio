@@ -6,43 +6,126 @@
   z-index: 99;
   left: 50%;
   transform: translateX(-50%);
+  pointer-events: none;
 }
+
+/* Glassmorphic floating social dock */
 .social-icons {
   position: absolute;
   left: -20px;
-  bottom: 20px;
+  bottom: 24px;
   display: none;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   z-index: 999;
-  padding: 10px;
+  padding: 10px 8px;
+  background: rgba(14, 12, 22, 0.75);
+  border: 1px solid rgba(194, 164, 255, 0.22);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 32px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(157, 92, 255, 0.14);
+  pointer-events: auto;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
+
 .social-icons:hover {
-  transition: 0.3s;
-  color: var(--backgroundColor);
+  border-color: rgba(194, 164, 255, 0.4);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 28px rgba(157, 92, 255, 0.22);
 }
-.social-icons a:hover {
-  color: var(--backgroundColor);
-  /* transform: scale(1.2); */
-}
-.social-icons span {
-  width: 50px;
-  height: 50px;
+
+.social-icon-wrapper {
   position: relative;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.social-icons a {
-  --siLeft: 50%;
-  --siTop: 50%;
-  position: absolute;
-  left: var(--siLeft, 50%);
-  top: var(--siTop, 50%);
-  transform: translate(-50%, -50%);
+
+.social-icon-link {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   display: flex;
-  font-size: 23px;
-  will-change: left, top;
-  transition: transform 0.3s ease-out;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 22px;
+  text-decoration: none;
+  position: relative;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
 }
+
+.social-icon-svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+}
+
+/* Individual Icon Hover Animation: high contrast, spring lift, glowing aura */
+.social-icon-link:hover {
+  color: #ffffff !important;
+  background: rgba(194, 164, 255, 0.22);
+  border-color: rgba(194, 164, 255, 0.65);
+  box-shadow: 0 0 20px rgba(194, 164, 255, 0.6), 0 0 35px rgba(157, 92, 255, 0.35);
+  transform: scale(1.18) translateY(-2px);
+}
+
+.social-icon-link:hover .social-icon-svg {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 8px #ffffff);
+}
+
+.social-icon-link:active {
+  transform: scale(1.05) translateY(0);
+}
+
+/* Animated Tooltip Pill on Hover */
+.social-icon-tooltip {
+  position: absolute;
+  left: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-8px);
+  background: rgba(18, 16, 26, 0.94);
+  border: 1px solid rgba(194, 164, 255, 0.35);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), 0 0 15px rgba(194, 164, 255, 0.25);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 5px 12px;
+  border-radius: 100px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1000;
+}
+
+.social-icon-tooltip::before {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 7px;
+  height: 7px;
+  background: rgba(18, 16, 26, 0.94);
+  border-left: 1px solid rgba(194, 164, 255, 0.35);
+  border-bottom: 1px solid rgba(194, 164, 255, 0.35);
+}
+
+.social-icon-link:hover .social-icon-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Resume Button at Bottom Right */
 .resume-button {
   position: absolute;
   z-index: 99;
@@ -61,10 +144,13 @@
   transition: 0.5s;
   transform-origin: left bottom;
   transform: translateX(100%) rotateZ(-90deg);
+  pointer-events: auto;
 }
+
 .resume-button:hover {
   color: #fff;
 }
+
 div.resume-button span {
   color: #fff;
   font-size: 17px;
@@ -72,24 +158,13 @@ div.resume-button span {
   display: flex;
   align-items: center;
 }
-.check-line {
-  position: fixed;
-  top: 655px;
-  left: 0;
-  height: 1px;
-  background-color: #ffffff;
-  width: 100%;
-  z-index: 99999;
-}
+
 @media only screen and (min-width: 900px) {
   .social-icons {
     display: flex;
-    gap: 20px;
-  }
-  .social-icons a {
-    font-size: 28px;
   }
 }
+
 @media only screen and (min-width: 768px) {
   .resume-button {
     transform: none;
