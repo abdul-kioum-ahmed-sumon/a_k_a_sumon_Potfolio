@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#161022"/>
+      <stop offset="50%" stop-color="#0b080f"/>
+      <stop offset="100%" stop-color="#050307"/>
+    </linearGradient>
+
+    <!-- Outer Frame Gradient -->
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c2a4ff"/>
+      <stop offset="50%" stop-color="#7e3bf2"/>
+      <stop offset="100%" stop-color="#3b1778"/>
+    </linearGradient>
+
+    <!-- Text & Foreground Gradient -->
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="45%" stop-color="#f0eaff"/>
+      <stop offset="100%" stop-color="#c2a4ff"/>
+    </linearGradient>
+
+    <!-- Accent Violet Ribbon Gradient -->
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d6bfff"/>
+      <stop offset="60%" stop-color="#9a52ff"/>
+      <stop offset="100%" stop-color="#641ae6"/>
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="24" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="ambientLight" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+  </defs>
+
+  <!-- Base Rounded Squircle -->
+  <rect x="18" y="18" width="476" height="476" rx="112" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="7"/>
+
+  <!-- Ambient Violet Center Glow -->
+  <circle cx="256" cy="245" r="130" fill="#8e3eff" opacity="0.22" filter="url(#ambientLight)"/>
+
+  <!-- Top Badge: A.K.A. -->
+  <g transform="translate(256, 118)">
+    <!-- Pill Backdrop -->
+    <rect x="-92" y="-24" width="184" height="48" rx="24" fill="#1b132c" stroke="#8e4aff" stroke-width="2.5" opacity="0.95"/>
+    <text x="0" y="8" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="800" letter-spacing="6" fill="#d8c2ff" text-anchor="middle">A.K.A.</text>
+  </g>
+
+  <!-- Center Monogram: Iconic Stylized Hexagonal 'S' with Code Angles -->
+  <g transform="translate(256, 260) scale(1.15)">
+    <!-- Left Bracket < -->
+    <path d="M -82 -48 L -120 0 L -82 48" fill="none" stroke="url(#accentGrad)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+
+    <!-- Right Bracket > -->
+    <path d="M 82 -48 L 120 0 L 82 48" fill="none" stroke="url(#accentGrad)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+
+    <!-- Stylized Geometric 'S' Monogram -->
+    <!-- Top Arc of S -->
+    <path d="M 38 -54 C 20 -68, -32 -68, -48 -46 C -62 -26, -52 6, 0 16 C 52 26, 62 58, 46 80 C 28 102, -22 102, -42 88" 
+          fill="none" stroke="url(#primaryGrad)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Accent Dot / Vertex -->
+    <circle cx="0" cy="16" r="6" fill="#c2a4ff" filter="url(#softGlow)"/>
+  </g>
+
+  <!-- Bottom Wordmark: SUMON -->
+  <g transform="translate(256, 428)">
+    <text x="0" y="0" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="900" letter-spacing="14" fill="url(#primaryGrad)" text-anchor="middle">SUMON</text>
+  </g>
+</svg>

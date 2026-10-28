@@ -1,0 +1,325 @@
+.about-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  place-items: center;
+  position: relative;
+  opacity: 1;
+  height: auto;
+  width: 100%;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+.about-me {
+  padding: 50px 0px;
+  padding-bottom: 0;
+  width: var(--cWidth);
+  max-width: 580px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+/* Kicker & Title */
+.about-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.about-kicker {
+  font-family: "Space Grotesk", "Plus Jakarta Sans", sans-serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--accentColor);
+  opacity: 0.95;
+}
+
+.about-me h3.title {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(26px, 2.5vw, 36px);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.15;
+}
+
+/* Narrative Paragraph */
+.about-me p.para {
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(16px, 1.12vw, 18.5px);
+  font-weight: 400;
+  line-height: 1.72;
+  letter-spacing: -0.012em;
+  color: #d6d2e2;
+  margin: 0;
+}
+
+/* Focus Tags */
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.about-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15px;
+  padding: 5px 13px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #dedce6;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.about-tag-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accentColor);
+  box-shadow: 0 0 6px rgba(194, 164, 255, 0.7);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.about-tag:hover {
+  background: rgba(194, 164, 255, 0.1);
+  border-color: rgba(194, 164, 255, 0.35);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.about-tag:hover .about-tag-dot {
+  box-shadow: 0 0 10px rgba(194, 164, 255, 1);
+}
+
+/* Stats Cards Grid */
+.about-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.about-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-stat-card:hover {
+  background: linear-gradient(135deg, rgba(194, 164, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border-color: rgba(194, 164, 255, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 15px rgba(194, 164, 255, 0.08);
+}
+
+.stat-card-icon {
+  font-size: 20px;
+  color: var(--accentColor);
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(194, 164, 255, 0.1);
+  border: 1px solid rgba(194, 164, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stat-card-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-family: "Space Grotesk", "Plus Jakarta Sans", sans-serif;
+  font-size: 16.5px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.stat-label {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #9c99a8;
+  white-space: nowrap;
+  margin-top: 2px;
+  letter-spacing: 0.15px;
+}
+
+/* Actions Row */
+.about-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.about-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.about-btn-primary {
+  background: rgba(194, 164, 255, 0.15);
+  border: 1px solid rgba(194, 164, 255, 0.35);
+  color: #ffffff;
+}
+
+.about-btn-primary:hover {
+  background: var(--accentColor);
+  color: #0b080c;
+  box-shadow: 0 0 18px rgba(194, 164, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.about-btn-secondary {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #d6d3e2;
+}
+
+.about-btn-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Responsive queries */
+@media only screen and (max-width: 1024px) {
+  .about-section {
+    width: 100%;
+    justify-content: center;
+    height: auto;
+    padding: 70px 0;
+  }
+  .about-me {
+    width: 100%;
+    max-width: 580px;
+    margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .about-section {
+    width: var(--cWidth);
+    justify-content: flex-end;
+    max-width: 1920px;
+    height: var(--vh);
+    padding: 0px;
+    opacity: 1;
+  }
+  .about-me {
+    padding: 0px;
+    width: 50%;
+    max-width: 620px;
+    margin: 0;
+    gap: 16px;
+  }
+  .about-me p.para {
+    font-size: 1.25vw;
+    line-height: 1.85vw;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .about-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .about-me p.para {
+    font-size: 15.5px;
+    line-height: 26px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .about-section {
+    padding: 45px 0 25px 0;
+    width: 100%;
+    justify-content: center;
+  }
+  .about-me {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    gap: 16px;
+  }
+  .about-header {
+    padding-left: 0;
+  }
+  .about-me h3.title {
+    font-size: 24px;
+    letter-spacing: 1.5px;
+  }
+  .about-me p.para {
+    font-size: 14.5px;
+    line-height: 24px;
+  }
+  .about-tag {
+    font-size: 11px;
+    padding: 4px 10px;
+    gap: 6px;
+  }
+  .about-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  .about-btn {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 10px 16px;
+  }
+}
+
+@media only screen and (min-width: 1950px) {
+  .about-me p.para {
+    font-size: 1.6rem;
+    line-height: 2.3rem;
+  }
+}
