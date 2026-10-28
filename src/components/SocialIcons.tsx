@@ -69,9 +69,12 @@ const SocialIcons = () => {
         rel="noopener noreferrer"
         title="View Resume"
         data-cursor="disable"
+        aria-label="View Resume"
       >
-        <HoverLinks text="RESUME" />
-        <span>
+        <span className="resume-btn-text">
+          <HoverLinks text="RESUME" />
+        </span>
+        <span className="resume-btn-icon">
           <TbNotes />
         </span>
       </a>
