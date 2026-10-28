@@ -66,9 +66,10 @@
 /* Main Grid Layout */
 .contact-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 30px;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
   margin-bottom: 70px;
+  align-items: stretch;
 }
 
 /* Shared Glassmorphic Card */
@@ -76,7 +77,7 @@
   background: rgba(16, 12, 24, 0.78);
   border: 1px solid rgba(194, 164, 255, 0.18);
   border-radius: 24px;
-  padding: 38px 40px;
+  padding: 34px 36px;
   box-sizing: border-box;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -84,8 +85,10 @@
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   position: relative;
   overflow: hidden;
+  height: 100%;
 }
 
 .contact-card::before {
@@ -111,13 +114,33 @@
   opacity: 1;
 }
 
+/* Unified Card Header */
+.contact-card-head {
+  margin-bottom: 20px;
+}
+
+.contact-card-head h4 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.3px;
+}
+
+.contact-card-head p {
+  font-size: 13.5px;
+  color: #a09cb0;
+  margin: 0;
+  line-height: 20px;
+}
+
 /* Email Box */
 .contact-email-box {
   background: rgba(26, 19, 40, 0.6);
   border: 1px solid rgba(194, 164, 255, 0.18);
   border-radius: 18px;
-  padding: 24px 26px;
-  margin-bottom: 24px;
+  padding: 20px 22px;
+  margin-bottom: 16px;
   transition: all 0.35s ease;
 }
 
@@ -130,12 +153,12 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.8px;
   color: var(--accentColor);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .contact-icon-subtle {
@@ -145,14 +168,14 @@
 
 .contact-email-link {
   display: block;
-  font-size: 21px;
+  font-size: 19px;
   font-weight: 700;
   color: #ffffff;
   text-decoration: none;
   letter-spacing: -0.2px;
   word-break: break-all;
   transition: all 0.25s ease;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .contact-email-link:hover {
@@ -164,16 +187,17 @@
 .contact-action-row {
   display: flex;
   gap: 12px;
-  flex-wrap: wrap;
 }
 
 .contact-action-btn {
+  flex: 1;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 10px 20px;
+  padding: 10px 16px;
   border-radius: 100px;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
@@ -231,22 +255,22 @@
   color: var(--accentColor);
 }
 
-/* Info Pills (Academics & Location) */
+/* Info Pills (2x2 Grid) */
 .contact-info-pills {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 12px;
+  margin-bottom: 18px;
 }
 
 .contact-info-item {
   display: flex;
-  align-items: flex-start;
-  gap: 14px;
+  align-items: center;
+  gap: 12px;
   background: rgba(26, 19, 40, 0.55);
   border: 1px solid rgba(194, 164, 255, 0.14);
-  border-radius: 16px;
-  padding: 16px 18px;
+  border-radius: 14px;
+  padding: 12px 14px;
   transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -258,10 +282,9 @@
 }
 
 .contact-info-icon {
-  font-size: 24px;
+  font-size: 22px;
   color: var(--accentColor);
   flex-shrink: 0;
-  margin-top: 2px;
   transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
 }
 
@@ -270,28 +293,36 @@
   filter: drop-shadow(0 0 8px rgba(194, 164, 255, 0.8));
 }
 
+.contact-info-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
 .contact-info-title {
   display: block;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1.4px;
-  color: rgba(255, 255, 255, 0.5);
-  margin-bottom: 4px;
+  letter-spacing: 1.2px;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 2px;
 }
 
 .contact-info-desc {
-  font-size: 13.5px;
-  line-height: 19px;
+  font-size: 12px;
+  line-height: 16px;
   color: #dedbe8;
   margin: 0;
-  font-weight: 400;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Resume wrap */
 .contact-cv-wrap {
   margin-top: auto;
-  padding-top: 8px;
 }
 
 .contact-cv-btn {
@@ -300,12 +331,12 @@
   justify-content: center;
   gap: 10px;
   width: 100%;
-  padding: 14px 22px;
+  padding: 13px 20px;
   border-radius: 14px;
   background: linear-gradient(135deg, rgba(194, 164, 255, 0.1), rgba(26, 19, 40, 0.65));
   border: 1px solid rgba(194, 164, 255, 0.28);
   color: #ffffff;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 600;
   text-decoration: none;
   box-sizing: border-box;
@@ -342,36 +373,23 @@
 
 /* Right Card: Social Profiles */
 .contact-social-head {
-  margin-bottom: 22px;
-}
-
-.contact-social-head h4 {
-  font-size: 22px;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 6px 0;
-}
-
-.contact-social-head p {
-  font-size: 13.5px;
-  color: #9d9aa8;
-  margin: 0;
+  display: none;
 }
 
 .contact-social-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
   height: 100%;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 .contact-social-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 20px;
-  border-radius: 16px;
+  padding: 13px 18px;
+  border-radius: 14px;
   background: rgba(26, 19, 40, 0.55);
   border: 1px solid rgba(194, 164, 255, 0.14);
   text-decoration: none;
@@ -393,8 +411,8 @@
 }
 
 .social-item-icon {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 12px;
   background: rgba(194, 164, 255, 0.1);
   border: 1px solid rgba(194, 164, 255, 0.22);
@@ -402,7 +420,7 @@
   align-items: center;
   justify-content: center;
   color: var(--accentColor);
-  font-size: 20px;
+  font-size: 19px;
   transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -415,10 +433,10 @@
 }
 
 .social-item-details h5 {
-  font-size: 15.5px;
+  font-size: 15px;
   font-weight: 600;
   color: #ffffff;
-  margin: 0 0 3px 0;
+  margin: 0 0 2px 0;
   transition: color 0.25s ease;
 }
 
@@ -460,7 +478,7 @@
 }
 
 .social-item-arrow {
-  font-size: 19px;
+  font-size: 18px;
   color: #7b758e;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }

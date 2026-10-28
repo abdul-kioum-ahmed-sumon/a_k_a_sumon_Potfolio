@@ -8,6 +8,8 @@ import {
   MdMailOutline,
   MdPlace,
   MdSchool,
+  MdWorkOutline,
+  MdCode,
 } from "react-icons/md";
 import { FaGithub, FaLinkedinIn, FaWhatsapp, FaFacebookF } from "react-icons/fa6";
 import { SiCodeforces } from "react-icons/si";
@@ -90,8 +92,13 @@ const Contact = () => {
 
         {/* Main Grid */}
         <div className="contact-grid">
-          {/* Left Card: Direct Contact & Quick Actions */}
+          {/* Left Card: Direct Contact & Info */}
           <div className="contact-card contact-main-card">
+            <div className="contact-card-head">
+              <h4>Direct Contact</h4>
+              <p>Reach out directly for collaborations, inquiries, or opportunities.</p>
+            </div>
+
             {/* Email Box */}
             <div className="contact-email-box">
               <div className="contact-email-label">
@@ -113,17 +120,6 @@ const Contact = () => {
                   data-cursor="disable"
                 >
                   <MdMailOutline /> Send Email <MdArrowOutward />
-                </a>
-
-                <a
-                  href="https://wa.me/akasumon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="contact-action-btn contact-btn-secondary"
-                  data-cursor="disable"
-                  aria-label="Chat on WhatsApp"
-                >
-                  <FaWhatsapp /> WhatsApp <MdArrowOutward />
                 </a>
 
                 <button
@@ -148,23 +144,39 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Academic & Background Brief */}
+            {/* Academic & Professional Info (2x2 Grid) */}
             <div className="contact-info-pills">
               <div className="contact-info-item">
                 <MdSchool className="contact-info-icon" />
-                <div>
+                <div className="contact-info-text">
                   <span className="contact-info-title">Degree &amp; Alma Mater</span>
                   <p className="contact-info-desc">
-                    B.Sc. in Computer Science &amp; Engineering &bull; BAUST
+                    B.Sc. in CSE &bull; BAUST
                   </p>
                 </div>
               </div>
 
               <div className="contact-info-item">
                 <MdPlace className="contact-info-icon" />
-                <div>
+                <div className="contact-info-text">
                   <span className="contact-info-title">Location</span>
                   <p className="contact-info-desc">Bangladesh &bull; Remote Available</p>
+                </div>
+              </div>
+
+              <div className="contact-info-item">
+                <MdWorkOutline className="contact-info-icon" />
+                <div className="contact-info-text">
+                  <span className="contact-info-title">Availability</span>
+                  <p className="contact-info-desc">Open for Roles &bull; Full-time / Remote</p>
+                </div>
+              </div>
+
+              <div className="contact-info-item">
+                <MdCode className="contact-info-icon" />
+                <div className="contact-info-text">
+                  <span className="contact-info-title">Specialization</span>
+                  <p className="contact-info-desc">Full Stack &bull; Problem Solving</p>
                 </div>
               </div>
             </div>
@@ -185,9 +197,9 @@ const Contact = () => {
 
           {/* Right Card: Social & Profiles */}
           <div className="contact-card contact-social-card">
-            <div className="contact-social-head">
+            <div className="contact-card-head">
               <h4>Profiles &amp; Networks</h4>
-              <p>Explore my repositories, competitive records, and updates.</p>
+              <p>Explore my repositories, competitive records, and social handles.</p>
             </div>
 
             <div className="contact-social-list">
