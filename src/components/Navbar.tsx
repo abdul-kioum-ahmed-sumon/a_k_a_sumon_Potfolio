@@ -17,22 +17,23 @@ const Navbar = () => {
   useEffect(() => {
     const isDesktop = typeof window !== "undefined" && window.innerWidth > 1024;
 
-    // Create optimized ScrollSmoother: snappy 1.1s smooth on desktop, 0 on touch to preserve native 120Hz momentum
-    smoother = ScrollSmoother.create({
-      wrapper: "#smooth-wrapper",
-      content: "#smooth-content",
-      smooth: isDesktop ? 1.1 : 0,
-      speed: 1,
-      effects: isDesktop,
-      autoResize: true,
-      ignoreMobileResize: true,
-      smoothTouch: 0,
-    });
+    // Create optimized ScrollSmoother: only on desktop where smooth wheel inertia is desired.
+    // On mobile touch devices, native 120Hz momentum scrolling is preserved.
+    if (isDesktop) {
+      smoother = ScrollSmoother.create({
+        wrapper: "#smooth-wrapper",
+        content: "#smooth-content",
+        smooth: 1.1,
+        speed: 1,
+        effects: true,
+        autoResize: true,
+      });
 
-    smoother.scrollTop(0);
-    smoother.paused(true);
-    if (typeof window !== "undefined") {
-      (window as any).smoother = smoother;
+      smoother.scrollTop(0);
+      smoother.paused(true);
+      if (typeof window !== "undefined") {
+        (window as any).smoother = smoother;
+      }
     }
 
     const updateScrollState = (scrollPos: number) => {

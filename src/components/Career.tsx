@@ -55,34 +55,68 @@ const Career = () => {
 
       if (!infoEl || !timelineEl || nodes.length < 2) return;
 
-      const updateDimensions = () => {
+      const getNodeCenterY = (node: Element) => {
+        const box = node.closest(".career-info-box") as HTMLElement;
+        const nodeEl = node as HTMLElement;
+        if (box && (box.offsetTop !== 0 || nodeEl.offsetTop !== 0)) {
+          return box.offsetTop + nodeEl.offsetTop + nodeEl.offsetHeight / 2;
+        }
+        // Fallback using bounding client rect relative to infoEl
         const infoRect = infoEl.getBoundingClientRect();
-        const firstNodeRect = nodes[0].getBoundingClientRect();
-        const lastNodeRect = nodes[nodes.length - 1].getBoundingClientRect();
+        const nodeRect = nodeEl.getBoundingClientRect();
+        return nodeRect.top + nodeRect.height / 2 - infoRect.top;
+      };
 
-        const startY =
-          firstNodeRect.top + firstNodeRect.height / 2 - infoRect.top;
-        const endY =
-          lastNodeRect.top + lastNodeRect.height / 2 - infoRect.top;
+      const updateDimensions = () => {
+        if (!nodes.length) return 0;
+        const startY = getNodeCenterY(nodes[0]);
+        const endY = getNodeCenterY(nodes[nodes.length - 1]);
         const totalHeight = Math.max(endY - startY, 40);
 
         if (trackEl) {
           trackEl.style.top = `${startY}px`;
           trackEl.style.height = `${totalHeight}px`;
         }
-        timelineEl.style.top = `${startY}px`;
+        if (timelineEl) {
+          timelineEl.style.top = `${startY}px`;
+        }
 
         return totalHeight;
       };
 
       let totalHeight = updateDimensions();
 
+      // Recalculate dimensions dynamically on DOM resize or font load
+      let ro: ResizeObserver | null = null;
+      if (typeof ResizeObserver !== "undefined") {
+        ro = new ResizeObserver(() => {
+          totalHeight = updateDimensions();
+          ScrollTrigger.refresh();
+        });
+        ro.observe(infoEl);
+      }
+
+      if (typeof document !== "undefined" && document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+          totalHeight = updateDimensions();
+          ScrollTrigger.refresh();
+        });
+      }
+
+      const handleResize = () => {
+        totalHeight = updateDimensions();
+      };
+      window.addEventListener("resize", handleResize, { passive: true });
+
+      const isDesktop = window.innerWidth > 1024;
+
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: ".career-info",
-          start: "top 65%",
-          end: "bottom 65%",
-          scrub: 0.4,
+          trigger: nodes[0],
+          endTrigger: nodes[nodes.length - 1],
+          start: "center 70%",
+          end: "center 55%",
+          scrub: isDesktop ? 0.4 : true,
           invalidateOnRefresh: true,
           onRefresh: () => {
             totalHeight = updateDimensions();
@@ -99,6 +133,11 @@ const Career = () => {
           duration: 1,
         }
       );
+
+      return () => {
+        if (ro) ro.disconnect();
+        window.removeEventListener("resize", handleResize);
+      };
     },
     { scope: containerRef }
   );

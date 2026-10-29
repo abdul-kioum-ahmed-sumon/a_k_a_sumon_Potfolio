@@ -1,5 +1,6 @@
 import { SplitText } from "gsap/SplitText";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { smoother } from "../Navbar";
 
 export function initialFX() {
@@ -11,6 +12,11 @@ export function initialFX() {
   if (mainEl) {
     mainEl.classList.add("main-active");
   }
+
+  // Refresh all ScrollTrigger positions after page unlock and DOM reflow
+  setTimeout(() => {
+    ScrollTrigger.refresh();
+  }, 350);
   gsap.to("body", {
     backgroundColor: "#0b080c",
     duration: 0.5,
