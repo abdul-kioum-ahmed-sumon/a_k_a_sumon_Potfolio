@@ -24,13 +24,13 @@ const socialLinks: SocialItem[] = [
   },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com/in/abdul-kioum-ahmed-sumon",
+    url: "https://www.linkedin.com/in/akasumon",
     icon: <FaLinkedinIn />,
     ariaLabel: "Visit LinkedIn profile",
   },
   {
     name: "Facebook",
-    url: "https://facebook.com/akasumon",
+    url: "https://facebook.com/akasumon1",
     icon: <FaFacebookF />,
     ariaLabel: "Visit Facebook profile",
   },

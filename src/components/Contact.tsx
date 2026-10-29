@@ -47,9 +47,9 @@ const Contact = () => {
     },
     {
       name: "LinkedIn",
-      handle: "Abdul Kioum Ahmed Sumon",
+      handle: "akasumon",
       badge: "Professional Network",
-      url: "https://linkedin.com/in/abdul-kioum-ahmed-sumon",
+      url: "https://www.linkedin.com/in/akasumon",
       icon: <FaLinkedinIn />,
     },
     {
@@ -61,9 +61,9 @@ const Contact = () => {
     },
     {
       name: "Facebook",
-      handle: "akasumon",
+      handle: "akasumon1",
       badge: "Social Profile",
-      url: "https://facebook.com/akasumon",
+      url: "https://facebook.com/akasumon1",
       icon: <FaFacebookF />,
     },
     {
