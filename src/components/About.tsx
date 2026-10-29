@@ -1,4 +1,4 @@
-import { MdArrowOutward, MdCode, MdEmojiEvents, MdSchool } from "react-icons/md";
+import { MdCode, MdEmojiEvents, MdSchool } from "react-icons/md";
 import "./styles/About.css";
 
 const About = () => {
@@ -48,8 +48,8 @@ const About = () => {
               <MdCode />
             </div>
             <div className="stat-card-info">
-              <span className="stat-number">200+</span>
-              <span className="stat-label">Problems Solved</span>
+              <span className="stat-number">Problem Solver</span>
+              <span className="stat-label">Algorithms &amp; Logic</span>
             </div>
           </div>
 
@@ -72,26 +72,6 @@ const About = () => {
               <span className="stat-label">CSE (BAUST)</span>
             </div>
           </div>
-        </div>
-
-        {/* Resume / Connect Action */}
-        <div className="about-actions">
-          <a
-            href="/a_k_a_sumon_CV.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="about-btn about-btn-primary"
-            data-cursor="disable"
-          >
-            View Resume <MdArrowOutward />
-          </a>
-          <a
-            href="#contact"
-            className="about-btn about-btn-secondary"
-            data-cursor="disable"
-          >
-            Let's Talk
-          </a>
         </div>
       </div>
     </div>
