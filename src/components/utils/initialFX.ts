@@ -4,7 +4,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { smoother } from "../Navbar";
 
 export function initialFX() {
+  document.body.style.overflow = "";
   document.body.style.overflowY = "auto";
+  document.documentElement.style.overflowY = "auto";
   if (smoother) {
     smoother.paused(false);
   }

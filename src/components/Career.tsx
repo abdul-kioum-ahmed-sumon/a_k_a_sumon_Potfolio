@@ -55,88 +55,98 @@ const Career = () => {
 
       if (!infoEl || !timelineEl || nodes.length < 2) return;
 
-      const getNodeCenterY = (node: Element) => {
-        const box = node.closest(".career-info-box") as HTMLElement;
-        const nodeEl = node as HTMLElement;
-        if (box && (box.offsetTop !== 0 || nodeEl.offsetTop !== 0)) {
-          return box.offsetTop + nodeEl.offsetTop + nodeEl.offsetHeight / 2;
-        }
-        // Fallback using bounding client rect relative to infoEl
-        const infoRect = infoEl.getBoundingClientRect();
-        const nodeRect = nodeEl.getBoundingClientRect();
-        return nodeRect.top + nodeRect.height / 2 - infoRect.top;
-      };
-
       const updateDimensions = () => {
-        if (!nodes.length) return 0;
-        const startY = getNodeCenterY(nodes[0]);
-        const endY = getNodeCenterY(nodes[nodes.length - 1]);
-        const totalHeight = Math.max(endY - startY, 40);
+        if (!nodes.length || !infoEl) return 0;
+        const infoRect = infoEl.getBoundingClientRect();
+        const r0 = nodes[0].getBoundingClientRect();
+        const rLast = nodes[nodes.length - 1].getBoundingClientRect();
+
+        const startY = r0.top + r0.height / 2 - infoRect.top;
+        const endY = rLast.top + rLast.height / 2 - infoRect.top;
+        const total = Math.max(endY - startY, 40);
 
         if (trackEl) {
           trackEl.style.top = `${startY}px`;
-          trackEl.style.height = `${totalHeight}px`;
+          trackEl.style.height = `${total}px`;
         }
         if (timelineEl) {
           timelineEl.style.top = `${startY}px`;
         }
 
-        return totalHeight;
+        return total;
       };
 
       let totalHeight = updateDimensions();
+      let ticking = false;
 
-      // Recalculate dimensions dynamically on DOM resize or font load
+      const updateProgress = () => {
+        ticking = false;
+        if (!nodes.length || !timelineEl) return;
+        const r0 = nodes[0].getBoundingClientRect();
+        const rLast = nodes[nodes.length - 1].getBoundingClientRect();
+        const focusY = window.innerHeight * 0.6;
+        const start = r0.top + r0.height / 2;
+        const end = rLast.top + rLast.height / 2;
+        const dist = end - start;
+        if (dist <= 10) return;
+
+        const progress = Math.max(0, Math.min(1, (focusY - start) / dist));
+        timelineEl.style.height = `${progress * totalHeight}px`;
+      };
+
+      const onScroll = () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(updateProgress);
+        }
+      };
+
+      const handleResizeOrReflow = () => {
+        totalHeight = updateDimensions();
+        onScroll();
+      };
+
+      // Real-time passive event listeners for both desktop and mobile
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("touchmove", onScroll, { passive: true });
+      document.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", handleResizeOrReflow, { passive: true });
+
+      // ResizeObserver to recalibrate on font load or DOM layout shift
       let ro: ResizeObserver | null = null;
       if (typeof ResizeObserver !== "undefined") {
         ro = new ResizeObserver(() => {
-          totalHeight = updateDimensions();
-          ScrollTrigger.refresh();
+          handleResizeOrReflow();
         });
         ro.observe(infoEl);
       }
 
       if (typeof document !== "undefined" && document.fonts && document.fonts.ready) {
         document.fonts.ready.then(() => {
-          totalHeight = updateDimensions();
-          ScrollTrigger.refresh();
+          handleResizeOrReflow();
         });
       }
 
-      const handleResize = () => {
-        totalHeight = updateDimensions();
-      };
-      window.addEventListener("resize", handleResize, { passive: true });
+      // Initial progress sync
+      handleResizeOrReflow();
 
-      const isDesktop = window.innerWidth > 1024;
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: nodes[0],
-          endTrigger: nodes[nodes.length - 1],
-          start: "center 70%",
-          end: "center 55%",
-          scrub: isDesktop ? 0.4 : true,
-          invalidateOnRefresh: true,
-          onRefresh: () => {
-            totalHeight = updateDimensions();
-          },
+      // GSAP ScrollTrigger hook for smooth integration if present
+      const st = ScrollTrigger.create({
+        trigger: ".career-info",
+        start: "top bottom",
+        end: "bottom top",
+        onUpdate: () => {
+          onScroll();
         },
       });
 
-      tl.fromTo(
-        timelineEl,
-        { height: 0 },
-        {
-          height: () => totalHeight,
-          ease: "none",
-          duration: 1,
-        }
-      );
-
       return () => {
+        st.kill();
         if (ro) ro.disconnect();
-        window.removeEventListener("resize", handleResize);
+        window.removeEventListener("scroll", onScroll);
+        window.removeEventListener("touchmove", onScroll);
+        document.removeEventListener("scroll", onScroll);
+        window.removeEventListener("resize", handleResizeOrReflow);
       };
     },
     { scope: containerRef }
