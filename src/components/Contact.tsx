@@ -12,7 +12,6 @@ import {
   MdCode,
 } from "react-icons/md";
 import { FaGithub, FaLinkedinIn, FaWhatsapp, FaFacebookF } from "react-icons/fa6";
-import { SiCodeforces } from "react-icons/si";
 import { TbNotes } from "react-icons/tb";
 import { smoother } from "./Navbar";
 import "./styles/Contact.css";
@@ -65,13 +64,6 @@ const Contact = () => {
       badge: "Social Profile",
       url: "https://facebook.com/akasumon1",
       icon: <FaFacebookF />,
-    },
-    {
-      name: "Codeforces",
-      handle: "abdulkioumahmed",
-      badge: "Competitive Programming",
-      url: "https://codeforces.com/profile/abdulkioumahmed",
-      icon: <SiCodeforces />,
     },
   ];
 
